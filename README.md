@@ -1,4 +1,4 @@
-test de recrutement SOFTIBOX sur le framework Symfony ( version : 3.4 )
+Recrutement : test framework Symfony ( version : 3.4 )
 =============================================================
 ## L'objectif :
 * Votre niveau en compréhension, analyse / conception
@@ -19,6 +19,7 @@ test de recrutement SOFTIBOX sur le framework Symfony ( version : 3.4 )
 ### Remarque
 
 * les résultats du test si elles sont concluente vous seront envoyés par email
+* les modifications des bases de données seront à ajouter à la racine du projet
 
 ##merci de votre collaboration ®Softibox
 
