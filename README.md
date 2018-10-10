@@ -6,7 +6,8 @@ Recrutement : test framework Symfony ( version : 3.4 )
 * Votre maitrise de symfony
 
 ## Astuce pour le recrutement
-* vous devez faire un fork du projet
+* vous devez créer un compte sur github
+* vous devez faire un fork du projet à partir de votre compte
 * mettez le projet forker dans votre local
 * lancer la commande composer install pour installer le vendor
 * faite vos modifications 
