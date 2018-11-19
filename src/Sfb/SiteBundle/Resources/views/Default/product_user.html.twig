@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block title %}Liste des produits créés par {{user.username}} | {{parent()}}{% endblock %}
+{% block main %}
+<section class="section">
+    <div class="centred">
+        <h1>Liste des produits créés par {{user.username}}</h1>
+        <div class="product_list">
+			<ul class="row">
+				{%for produit in user.produits%}
+				<li class="col-12 col-sm-4 col-md-3">
+					<h2 class="produit-title">{{produit.title}}</h2>
+					<div class="produit-price">{{produit.pricettc}} AR</div>
+					<div class="produit-image">
+						{%for img in produit.images%}
+						<img src="{{img.url}}" alt="{{img.url}}">
+						{%endfor%}
+					</div>
+					<div class="produit-description">{{produit.description}}</div>
+					<div class="produit-options" style="padding-top:10px">
+						<a href="{{path('sfb_site_product_edit',{'id':produit.id})}}">modifier</a> | <a href="{{path('sfb_site_product_delete',{'id': produit.id})}}">supprimer</a>
+					</div>
+				</li>
+				{%endfor%}
+			</ul>
+		</div>
+    </div>
+</section>
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block title %}Recherche sur {{query}} | {{parent()}}{% endblock %}
+{% block main %}
+<section class="section">
+    <div class="centred">
+        <h1>Recherche sur {{query}}</h1>
+        <h3>
+        	{%if results_count == 0%}
+        	Aucun résultat trouvé
+        	{%else%}
+        	Il y {{results_count}} résultat(s) trouvé(s)
+        	{%endif%}
+        </h3>
+        <div id="result">
+        	<ul>
+        	{%for produit in results%}
+        		<li class="clearfix">
+        			<span class="number">[{{(page - 1) * 5 + loop.index}}]</span>
+        			<h3>{{produit.title}}</h3>
+        			<div>{{produit.pricettc}} AR</div>
+        			<div>{{produit.description}}</div>
+        		</li>
+        	{%endfor%}
+        	</ul>
+        </div>
+    	{%if number_page > 1%}
+    	<ul class="pagination">
+    		<li>Page : </li>
+    		{%for p in range(1,number_page)%}
+    		<li class="{%if p==page%}active{%endif%}">
+                <a href="{{path('sfb_site_search',{'page':p, 'query': query})}}">{%if p==page%}[{{p}}]{%else%}{{p}}{%endif%}</a>
+            </li>
+    		{%endfor%}
+    	</ul>
+    	{%endif%}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block title %}Liste des utilisateurs | {{parent()}}{% endblock %}
+{% block main %}
+<section class="section">
+    <div class="centred">
+        <h1>Liste des utilisateurs</h1>
+        <ul class="user_list">
+        	{%for user in users%}
+        	<li>
+        		<p>{{user.name}} {{user.lastname}}</p>
+        		<p>@{{user.username}}, e-mail : {{user.email}}</p>
+        		<p><a href="{{path('sfb_site_user_edit',{'id': user.id})}}">éditer</a> | <a href="{{path('sfb_site_user_delete',{'id': user.id})}}">supprimer</a> | <a href="{{path('sfb_site_product_user',{'id': user.id})}}">afficher produits</a></p>
+        	</li>
+        	{%endfor%}
+        </ul>
+        <div class="text-center">
+            <a href="{{path('sfb_site_user_add')}}" class="btn btn-primary">Ajout nouvel utilisateur</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}

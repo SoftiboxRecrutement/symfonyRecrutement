@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block title %}Ajout nouvel utilisateur | {{parent()}}{% endblock %}
+{% block main %}
+<section class="section">
+    <div class="centred">
+        <h1>Ajout nouvel utilisateur</h1>
+        {{form_start(form)}}
+          {{form_errors(form)}}
+          {{form_widget(form)}}
+          <div class="text-center">
+            <button type="submit">Créer un compte</button>
+          </div>
+        {{form_end(form)}}
+        <div class="text-center">
+          <a href="{{path('sfb_site_user_list')}}">> Retour à la liste</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}

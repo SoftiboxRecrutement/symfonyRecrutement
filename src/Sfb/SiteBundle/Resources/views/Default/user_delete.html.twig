@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block title %}Voulez-vous supprimer ce compte ? | {{parent()}}{% endblock %}
+{% block main %}
+<section class="section">
+    <div class="centred">
+        <h1 class="produit-title">@{{user.username}}</h1>
+        <p>{{user.name}} {{user.lastname}}</p>
+        <p>E-mail : {{user.email}}</p>
+        <p>Tél. : {{user.telephone}}</p>
+        {{form_start(form)}}
+        	{{form_errors(form)}}
+          {{form_widget(form)}}
+          <div class="text-center" style="padding-top:20px">
+            <h2>Voulez-vous supprimer ce compte ?</h2>
+        		<button type="submit">Oui, supprimer</button>
+            <a href="{{path('sfb_site_user_list')}}" class="btn btn-secondary">Retour à la liste</a>
+          </div>
+        {{form_end(form)}}
+        <div class="text-center">
+        </div>
+    </div>
+</section>
+{% endblock %}

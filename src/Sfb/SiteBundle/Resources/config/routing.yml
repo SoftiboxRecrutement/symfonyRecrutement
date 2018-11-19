@@ -1,0 +1,53 @@
+sfb_site_ma_page:
+    path:     /ma-page
+    defaults: { _controller: SfbSiteBundle:Controller1:ma_page }
+
+sfb_site_mes_infos:
+    path:     /mes-infos
+    defaults: { _controller: SfbSiteBundle:Controller2:mes_infos }
+
+sfb_site_search:
+    path:     /resultat/{page}
+    defaults: { _controller: SfbSiteBundle:Admin:search, page: 1 }
+    requirements:
+        page: \d*
+
+sfb_site_user_list:
+    path:     /admin/user/list
+    defaults: { _controller: SfbSiteBundle:Admin:userList }
+
+sfb_site_user_add:
+    path:     /admin/nouvelUtilisateur
+    defaults: { _controller: SfbSiteBundle:Admin:user_add }
+
+sfb_site_user_edit:
+    path:     /user/{id}/modifier
+    defaults: { _controller: SfbSiteBundle:Admin:user_edit }
+
+sfb_site_user_delete:
+    path:     /user/{id}/supprimer
+    defaults: { _controller: SfbSiteBundle:Admin:user_delete }
+
+sfb_site_product_add:
+    path:     /addProduit
+    defaults: { _controller: SfbSiteBundle:Admin:product_add }
+
+sfb_site_product_edit:
+    path:     /produit/{id}/modifier
+    defaults: { _controller: SfbSiteBundle:Admin:product_edit }
+
+sfb_site_product_delete:
+    path:     /produit/{id}/supprimer
+    defaults: { _controller: SfbSiteBundle:Admin:product_delete }
+
+sfb_site_product_list:
+    path:     /admin/listProduit
+    defaults: { _controller: SfbSiteBundle:Admin:product_list }
+
+sfb_site_my_product_list:
+    path:     /produits
+    defaults: { _controller: SfbSiteBundle:Admin:my_product_list }
+
+sfb_site_product_user:
+    path:     /list/produit/{id}
+    defaults: { _controller: SfbSiteBundle:Admin:product_user }
