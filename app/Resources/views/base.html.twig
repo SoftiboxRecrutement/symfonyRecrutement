@@ -2,12 +2,79 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Softibox{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{asset('dist/css/bootstrap-grid.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <script src='https://www.google.com/recaptcha/api.js'></script>
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div id="wp">
+            <header id="header">
+                <div class="centred">
+                    <div class="clearfix">
+                        <div id="logo">
+                            <a href="{{path('homepage')}}"><img src="{{asset('img/desc_logo.jpg')}}" alt="Softibox"></a>
+                        </div>
+                        <div id="h-right">
+                            <p>{{ render(controller("AppBundle:Default:countUser")) }}</p>
+                            <p>{{ render(controller("AppBundle:Default:countProduit")) }}</p>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <nav id="menu-bar">
+                            <ul id="menu">
+                                <li><a href="{{path('sfb_site_ma_page')}}">Ma page</a></li>
+                                <li><a href="{{path('sfb_site_mes_infos')}}">Mes infos</a></li>
+                            </ul>
+                        </nav>
+                        <div id="auth">
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <a href="{{path('sfb_site_my_product_list')}}">Mes produits</a>
+                                | 
+                                <a href="{{path('fos_user_profile_show')}}"><strong>{{app.user.username}}</strong></a>
+                                |
+                                <a href="{{ path('fos_user_security_logout') }}">
+                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                </a>
+                            {% else %}
+                                <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+                                <a href="{{ path('fos_user_security_login') }}" class="btn btn-secondary">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                            {% endif %}
+                        </div>  
+                    </div>
+                    {%block search%}
+                    <div id="search">
+                        <form action="{{path('sfb_site_search')}}" method="GET" id="f_search">
+                            <input type="text" name="query" required="required" placeholder="Rechercher produit..." minlength="3">
+                            <button type="submit">Rechercher</button>
+                        </form>
+                    </div>
+                    {%endblock%}
+                </div>
+            </header>
+            <div id="main">
+                <div class="centred">
+                {% if app.request.hasPreviousSession %}
+                    {% for type, messages in app.session.flashbag.all() %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ type }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+                </div>
+                {% block main %}{% endblock %}
+            </div>
+            <footer id="footer">
+                <div class="centred text-center">
+                    &copy; {{'now'|date('Y')}} Softibox.
+                </div>
+            </footer>
+        </div>
+        <script type="text/javascript" src="{{asset('js/jquery-1.11.0.min.js')}}"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

@@ -1,0 +1,25 @@
+{% extends "@FOSUser/layout.html.twig" %}
+{% block title %}Mon profil | {{parent()}}{% endblock %}
+{% block fos_user_content %}
+{% include "@FOSUser/Profile/show_content.html.twig" %}
+<div class="product_list">
+	<div class="row">
+		<div class="col-12 col-md-8">
+			<h1 style="padding:10px 0">3 derniers produits</h1>
+			{{ render(controller("SfbSiteBundle:Admin:latest")) }}
+		</div>
+		<div class="col-12 col-md-4">
+			<aside class="aside">
+				<ul>
+					<li><h2>Actions</h2></li>
+					<li><a href="{{path('sfb_site_product_add')}}">> Ajout nouveau produit</a></li>
+					{%if is_granted('ROLE_ADMIN')%}
+					<li><a href="{{path('sfb_site_user_list')}}">> Afficher la liste des utilisateurs</a></li>
+					<li><a href="{{path('sfb_site_product_list')}}">> Afficher la liste des produits</a></li>
+					{%endif%}
+				</ul>
+			</aside>
+		</div>
+	</div>
+</div>
+{% endblock fos_user_content %}

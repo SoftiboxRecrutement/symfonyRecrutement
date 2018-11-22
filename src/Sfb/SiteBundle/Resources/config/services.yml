@@ -1,0 +1,4 @@
+services:
+    login_success_handler:
+        class: Sfb\SiteBundle\LoginSuccessHandler\LoginSuccessHandler
+        arguments: ["@security.http_utils"]

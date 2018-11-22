@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+{% block title %}Ajout nouveau produit | {{parent()}}{% endblock %}
+{% block main %}
+<section class="section">
+    <div class="centred">
+        <h1>Ajout nouveau produit</h1>
+        {{form_start(form)}}
+        	{{form_errors(form)}}
+          {{form_widget(form)}}
+          <div>
+              <button id="add_image" class="btn btn-secondary">Add image</button>
+          </div>
+          <div class="g-recaptcha" data-sitekey="6LdQgXsUAAAAAKfcJUheGNu9ciBWlSiuKyCTqkm5"></div>
+          <div class="text-center">
+        		<button type="submit">Enregistrer le produit</button>
+        	</div>
+        {{form_end(form)}}
+        <div class="text-center">
+          <a href="{{path('sfb_site_my_product_list')}}">> Retour à la liste</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+  $(document).ready(function() {
+    var $container = $('div#produit_images');
+    var index = $container.find(':input').length;
+    $('#add_image').click(function(e) {
+      addImage($container);
+      e.preventDefault();
+      return false;
+    });
+    if (index == 0) {
+      addImage($container);
+    } else {
+      $container.children('div').each(function() {
+        addDeleteLink($(this));
+      });
+    }
+    function addImage($container) {
+        if (index<3) {
+            var template = $container.attr('data-prototype')
+            .replace(/__name__label__/g,'Image')
+            .replace(/__name__/g,index)
+          ;
+          var $prototype = $(template);
+          addDeleteLink($prototype);
+          $container.append($prototype);
+          index++;
+        }
+    }
+    function addDeleteLink($prototype) {
+        var $deleteLink = $('<a href="#" style="color:#f00;font-style:italic">Supprimer</a>');
+        $prototype.append($deleteLink);
+        $deleteLink.click(function(e) {
+        $prototype.remove();
+        e.preventDefault();
+        index--;
+        return false;
+      });
+    }
+  });
+</script>
+{% endblock %}

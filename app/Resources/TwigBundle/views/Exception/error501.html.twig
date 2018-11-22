@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block title %}Error {{ status_code }} | {{parent()}}{% endblock %}
+{% block main %}
+<section class="section">
+    <div class="centred text-center">
+    	<img src="{{asset('img/error.png')}}">
+        <h1>Error {{ status_code }}</h1>
+        <h2>Sorry, {{ status_text }} !</h2>
+    </div>
+</section>
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
